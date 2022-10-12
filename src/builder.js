@@ -20,24 +20,28 @@ async function init () {
         const promise = await inquirer.prompt(questions.add)
         if (promise.type !== "None") {
             let gen = await inquirer.prompt([...questions.general])
-            let man, eng, int;
+            let man, eng, int, t;
             switch ( promise.type ) {
                 case "Manager":
                     man = await inquirer.prompt(questions.manager)
+                    t = "m"
                     break;
                 case "Engineer":
                     eng = await inquirer.prompt(questions.engineer)
+                    t = "e"
                     break;
                 case "Intern":
                     int = await inquirer.prompt(questions.intern)
+                    t = "i"
                     break;
                 default:
                     console.warn("Could not match promise.type with an available case.")
                     cond = false
             }
 
-            gen["id"] = id;
             ourData[id] = {
+                type : t,
+                id : id,
                 ...gen,
                 ...man,
                 ...eng,
