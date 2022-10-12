@@ -33,7 +33,7 @@ function genCard(obj) {
     }
 
     if (obj.github) {
-        template += `<p>GitHub : <a target="_blank" href="${obj.getGitHub()}">${obj.getGitHub()}</a></p>`        
+        template += `<p>GitHub : <a target="_blank" href="https://${obj.getGitHub()}">${obj.getGitHub()}</a></p>`        
     }
 
     if (obj.school) {
