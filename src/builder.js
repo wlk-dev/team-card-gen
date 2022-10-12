@@ -1,4 +1,10 @@
+const Manager = require("../lib/Manager")
+const Engineer = require("../lib/Engineer")
+const Intern = require("../lib/Intern")
+
+
 const inquirer = require("inquirer");
+const { ObjectUnsubscribedError } = require("rxjs");
 
 
 const questions = {
@@ -11,6 +17,33 @@ const questions = {
     manager : {message : "Enter your office number : ", type : "input", name : "office_number"},
     engineer : {message : "Enter your GitHub name : ", type : "input", name : "github"},
     intern : {message : "Enter your school : ", type : "input", name : "school"}
+}
+
+function constructObjs ( objData ) {
+    let objs = [];
+    let c_obj;
+    for ( const key in objData ) {
+        let data = objData[key];
+        switch (data.type) {
+            case "m": 
+                delete data.type
+                c_obj = new Manager(...Object.values(data))
+                break
+            case "e":
+                delete data.type
+                c_obj = new Engineer(...Object.values(data))
+                break;
+            case "i":
+                delete data.type;
+                c_obj = new Intern(...Object.values(data))
+                break;
+            default:
+                console.warn("Invalid type detected :", data.type)
+            
+        }
+        objs.push(c_obj);
+    }
+    
 }
 
 
@@ -54,8 +87,6 @@ async function init () {
         }
     }
 
-    console.log(ourData);
-
 }
 
-init();
+init()
