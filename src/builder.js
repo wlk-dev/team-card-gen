@@ -14,6 +14,8 @@ const questions = {
         {message : "Enter your email : ", type : "input", name : "email"},
     ],
 
+    getId : {message : "Enter your ID : ", type : "input", name : "uid"},
+
     manager : {message : "Enter your office number : ", type : "input", name : "office_number"},
     engineer : {message : "Enter your GitHub name : ", type : "input", name : "github"},
     intern : {message : "Enter your school : ", type : "input", name : "school"}
@@ -33,7 +35,7 @@ function genCard(obj) {
     }
 
     if (obj.github) {
-        template += `<p>GitHub : <a target="_blank" href="https://${obj.getGitHub()}">${obj.getGitHub()}</a></p>`        
+        template += `<p>GitHub : <a rel="noopener" target="_blank" href="https://${obj.getGitHub()}">${obj.getGitHub()}</a></p>`        
     }
 
     if (obj.school) {
@@ -108,6 +110,7 @@ async function init () {
     while (cond) {
         const promise = await inquirer.prompt(questions.add)
         if (promise.type !== "None") {
+            const empId = await inquirer.prompt(questions.getId);
             let gen = await inquirer.prompt([...questions.general])
             let man, eng, int, t;
             switch ( promise.type ) {
@@ -130,7 +133,7 @@ async function init () {
 
             ourData[id] = {
                 type : t,
-                id : id,
+                id : empId.uid,
                 ...gen,
                 ...man,
                 ...eng,
