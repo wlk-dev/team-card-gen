@@ -7,7 +7,7 @@ describe("Engineer", () => {
 
             const result = eng.getGitHub()
 
-            expect(result).toEqual("github")
+            expect(result).toEqual("github.com/github")
         })  
    }) 
 
