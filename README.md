@@ -11,6 +11,8 @@
 * [Questions](#questions)
 ## Description
 A CLI tool that will generate an HTML page containing cards of the given team members.
+
+[Demo Video](https://youtu.be/o1aUv54QKx8)
 ## Installation
 `clone the repo`
 ## Usage
